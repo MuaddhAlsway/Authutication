@@ -4,7 +4,7 @@ import { LoginButton } from "@/components/auth/login-button"
 import { cn } from "@/lib/utils"
 const font = Poppins(
   {
-    subsets: ['latine'],
+    subsets: ['latin'],
     weight: ['600']
   }
 )
