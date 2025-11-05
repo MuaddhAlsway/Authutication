@@ -6,6 +6,10 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+enum UserRole {
+  ADMIN
+  USER
+}
 
 model User {
   id            String    @id @default(cuid())
@@ -16,6 +20,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  role          UserRole  @default(USER)   // corrected
 }
 
 // @auth/prisma-adapter
@@ -38,4 +43,14 @@ model Account {
  
   @@unique([provider, providerAccountId])
   @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
 }
