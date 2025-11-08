@@ -1,12 +1,12 @@
 'use client'
-
+import { useSearchParams } from 'next/navigation'
 import { useState, useTransition } from 'react'
 import { Button } from '../ui/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '../ui/input'
 import { LoginScheme } from '@/schemas'
-import { z } from 'zod';
+import { z } from 'zod'
 import {
   Form,
   FormControl,
@@ -15,17 +15,22 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-
 import { CardWrapper } from './card-wrapper'
 import { FormError } from '../form-error'
 import { FormSuccess } from '../form-sucess'
 import { login } from '@/action/login'
 
 export default function LoginForm() {
-  const [error, setError] = useState<string | undefined >('')
-  const [sucess, setSucess] = useState<string | undefined >('')
+  const searchParams = useSearchParams()
+  const urlError =
+    searchParams.get('error') === 'OAuthAccountNotLinked'
+      ? 'Email already in use with different provider'
+      : ''
 
-  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>('')
+  const [success, setSuccess] = useState<string | undefined>('')
+
+  const [isPending, startTransition] = useTransition()
   const form = useForm<z.infer<typeof LoginScheme>>({
     resolver: zodResolver(LoginScheme),
     defaultValues: {
@@ -35,17 +40,14 @@ export default function LoginForm() {
   })
 
   const onSubmit = (values: z.infer<typeof LoginScheme>) => {
-    setError('');
-    setSucess('');
+    setError('')
+    setSuccess('')
     startTransition(() => {
-           login(values)
-           .then((data) =>{
-            setError(data.error)
-            setSucess(data.success)
-           })
+      login(values).then((data) => {
+        setError(data?.error)
+        setSuccess(data?.success)
+      })
     })
-    
-    
   }
 
   return (
@@ -68,7 +70,7 @@ export default function LoginForm() {
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="john.deo@example.com"
+                      placeholder="john.doe@example.com"
                       type="email"
                     />
                   </FormControl>
@@ -84,20 +86,21 @@ export default function LoginForm() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input {...field}
-                    disabled={isPending}
-                     placeholder="******" type="password" />
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      placeholder="******"
+                      type="password"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <FormError message={error}/>
-          <FormSuccess message={sucess}/>
-          <Button 
-          disabled={isPending}
-          type="submit" className="w-full">
+          <FormError message={error || urlError} />
+          <FormSuccess message={success} />
+          <Button disabled={isPending} type="submit" className="w-full">
             Login
           </Button>
         </form>
