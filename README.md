@@ -9,30 +9,51 @@ This project includes Login, Register, and Sign-In pages, built with a clean UI 
 
 
 ## 📌 Features
-#### ✅ Frontend (Completed)
+#### ✅ Frontend Features (Completed)
 
-🔹 Responsive Sign In page
+- 🔘 Login Button (UI Only)
 
-🔹 Login page
+- 🚪 Logout Button (UI Only)
 
-🔹 Register page
+- 📝 Register Page
 
-🔹 Modern UI styling
+- 🔐 Login Page
 
-🔹 OAuth buttons (GitHub & Google)
+- 🤔 Forgot Password Page (UI Only)
 
-🔹 Clean components & structure
+- ✉️ Email Verification UI
+
+- ⚠️ Error Component
+
+- 🧩 Reusable Card & Form Components
+
+- 🌐 App Router Structure
+
+- 🖥️ Server & Client Component Examples (UI Only)
+
+- 🔑 OAuth Buttons (Google & GitHub — UI Only)
+
+- 🎨 Modern, responsive UI with Tailwind CSS
 
 ##### ⚠️ Backend (Not Completed Yet)
 
 The project currently does NOT include full backend logic.
 However, the base setup is included:
+- ✔ Prisma installed
 
-✔ Prisma installed
+- ✔ schema.prisma initialized
 
-✔ Database schema initialized
+- ✔ OAuth buttons included (UI only)
 
-✔ OAuth buttons included (UI only)
+- ❌ No authentication logic
+  
+- ❌ No session handling
+
+- ❌ No credential/OAuth providers
+
+- ❌ No middleware, callbacks, verification, 2FA, etc.
+
+Full backend logic will be added in future updates.
 
 Backend logic (routes, authentication, sessions, OAuth handlers) will be added in future updates.
 
