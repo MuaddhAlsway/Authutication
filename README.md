@@ -3,6 +3,11 @@
 A modern authentication interface inspired by the YouTube course tutorial.
 This project includes Login, Register, and Sign-In pages, built with a clean UI and basic structure for future expansion into full authentication.
 
+---
+📸
+<img width="100%"  alt="Screenshot 2025-11-20 144349" src="https://github.com/user-attachments/assets/c60e73db-0df0-4dff-bc31-3c404e8d230c" />
+
+
 ## 📌 Features
 #### ✅ Frontend (Completed)
 
@@ -55,9 +60,6 @@ OAuth (GitHub, Google – UI only)
 prisma/
   schema.prisma
 ```
-📸 Screenshots
-<img width="100%"  alt="Screenshot 2025-11-20 144349" src="https://github.com/user-attachments/assets/c60e73db-0df0-4dff-bc31-3c404e8d230c" />
-
 
 ## 📦 Installation
 ```
